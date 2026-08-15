@@ -31,9 +31,27 @@
 </style>
 </helmet>
 
-<div data-curtain="" style="position:fixed; inset:0; z-index:200; background:#0E1012; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:28px; padding:6vw;">
-  <div style="background:#EFEFEC; padding:14px 18px;"><img src="uploads/Roof-Restoration-Gold-Coast-Logo.png" alt="Roof Restoration Services Gold Coast" style="width:min(340px,62vw); height:auto;" /></div>
-  <div data-counter="" style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">00</div>
+<div data-curtain="" style="position:fixed; inset:0; z-index:200; overflow:hidden; opacity:{{ curtainOpacity }}; visibility:{{ curtainVis }}; pointer-events:{{ curtainEvents }};">
+  <div style="position:absolute; inset:0; display:flex;">
+    <span data-panel="" style="flex:1; background:#0E1012;"></span>
+    <span data-panel="" style="flex:1; background:#0E1012;"></span>
+    <span data-panel="" style="flex:1; background:#0E1012;"></span>
+    <span data-panel="" style="flex:1; background:#0E1012;"></span>
+    <span data-panel="" style="flex:1; background:#0E1012;"></span>
+  </div>
+  <div data-curtain-content="" style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; gap:clamp(20px,3vh,34px); padding:6vw;">
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px;">
+      <div style="background:#EFEFEC; padding:12px 16px;"><img src="uploads/Roof-Restoration-Gold-Coast-Logo.png" alt="Roof Restoration Services Gold Coast" style="width:min(300px,54vw); height:auto;" /></div>
+      <div data-counter="" style="font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(56px,12vw,180px); letter-spacing:-0.045em; line-height:0.82; color:#EFEFEC;">00</div>
+    </div>
+    <div style="height:2px; background:rgba(138,143,148,0.28); position:relative;">
+      <span data-progress="" data-accent-bg="" style="position:absolute; inset:0; background:#0070C0; transform:scaleX(0); transform-origin:left center;"></span>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px 26px; justify-content:space-between; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">
+      <span>Tile &amp; metal roofing · Gold Coast, QLD</span>
+      <span>QBCC licence 1137438 · ABN 87 108 233 576</span>
+    </div>
+  </div>
 </div>
 
 <header data-header="" style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 6vw; background:rgba(14,16,18,0.86); backdrop-filter:blur(10px); border-bottom:1px solid rgba(138,143,148,0.28); transition:padding .3s ease, background .3s ease, border-color .3s ease, color .3s ease;">
@@ -419,6 +437,8 @@ const INK = '#0E1012';
 const PAPER = '#EFEFEC';
 
 class Component extends DCLogic {
+  state = { loaded: false };
+
   componentDidMount() {
     this.accent = this.props.accent || '#0070C0';
     this.motionOn = (this.props.motion !== 'off') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -474,27 +494,41 @@ class Component extends DCLogic {
     if (this.lenis) { on ? this.lenis.stop() : this.lenis.start(); }
   }
 
+  dismissCurtain() {
+    if (this.state.loaded) return;
+    this.setState({ loaded: true });
+  }
+
   runLoader() {
+    if (this.loaderStarted) return;
+    this.loaderStarted = true;
     const curtain = this.root.querySelector('[data-curtain]');
     const counter = this.root.querySelector('[data-counter]');
     const self = this;
-    if (!this.motionOn || !window.gsap) {
-      if (curtain) curtain.remove();
+    if (!this.motionOn || !window.gsap || !curtain) {
+      this.dismissCurtain();
       this.initMotion();
       return;
     }
+    const gsap = window.gsap;
     const obj = { v: 0 };
-    window.gsap.to(obj, {
-      v: 100, duration: 1.1, ease: 'power2.inOut',
-      onUpdate: function () { counter.textContent = String(Math.round(obj.v)).padStart(2, '0'); },
-      onComplete: function () {
-        window.gsap.to(curtain, {
-          yPercent: -100, duration: 0.8, ease: 'power3.inOut',
-          onComplete: function () { curtain.remove(); }
-        });
-        self.initMotion();
-      }
-    });
+    const panels = curtain.querySelectorAll('[data-panel]');
+    const content = curtain.querySelector('[data-curtain-content]');
+    const bar = curtain.querySelector('[data-progress]');
+    const tl = gsap.timeline();
+    tl.to(obj, {
+      v: 100, duration: 1.2, ease: 'power2.inOut',
+      onUpdate: function () { counter.textContent = String(Math.round(obj.v)).padStart(2, '0'); }
+    }, 0);
+    tl.to(bar, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0);
+    tl.to(content, { autoAlpha: 0, y: -20, duration: 0.4, ease: 'power2.in' }, 1.2);
+    tl.to(panels, {
+      yPercent: -100, duration: 0.85, ease: 'power3.inOut', stagger: 0.07,
+      onStart: function () { self.initMotion(); },
+      onComplete: function () { self.dismissCurtain(); }
+    }, 1.45);
+    // Safety net: if anything stalls the timeline, never trap the visitor.
+    setTimeout(function () { self.dismissCurtain(); }, 6000);
   }
 
   initMotion() {
@@ -829,7 +863,14 @@ class Component extends DCLogic {
     b.appendChild(this.h('div', 'font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:' + GREY + ';', 'Prototype — no data was submitted'));
   }
 
-  renderVals() { return {}; }
+  renderVals() {
+    const done = !!this.state.loaded;
+    return {
+      curtainOpacity: done ? '0' : '1',
+      curtainVis: done ? 'hidden' : 'visible',
+      curtainEvents: done ? 'none' : 'auto'
+    };
+  }
 }
 </script>
 </body>
