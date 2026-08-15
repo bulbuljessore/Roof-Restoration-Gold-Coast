@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: #0E1012; color: #EFEFEC; font-family: Archivo, system-ui, sans-serif; overflow-x: hidden; font-variant-numeric: tabular-nums; }
+  img { max-width: 100%; display: block; }
+  a { color: #EFEFEC; text-decoration: none; }
+  a:hover { color: #0070C0; }
+  button { font: inherit; color: inherit; }
+  ::selection { background: #0070C0; color: #EFEFEC; }
+  [data-rail], [data-chiprow] { -ms-overflow-style: none; scrollbar-width: none; }
+  [data-rail]::-webkit-scrollbar, [data-chiprow]::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  @media print { [data-rv] { opacity: 1 !important; transform: none !important; } [data-curtain] { display: none !important; } }
+  @media (prefers-reduced-motion: reduce) { [data-rv] { opacity: 1 !important; transform: none !important; } }
+</style>
+</helmet>
+
+<div data-curtain="" style="position:fixed; inset:0; z-index:200; background:#0E1012; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:28px; padding:6vw;">
+  <div style="background:#EFEFEC; padding:14px 18px;"><img src="uploads/Roof-Restoration-Gold-Coast-Logo.png" alt="Roof Restoration Services Gold Coast" style="width:min(340px,62vw); height:auto;" /></div>
+  <div data-counter="" style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">00</div>
+</div>
+
+<header data-header="" style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 6vw; background:rgba(14,16,18,0.86); backdrop-filter:blur(10px); border-bottom:1px solid rgba(138,143,148,0.28); transition:padding .3s ease, background .3s ease, border-color .3s ease, color .3s ease;">
+  <a href="#top" data-hdr-logo="" style="background:#EFEFEC; padding:8px 12px; display:block; flex:0 0 auto; transition:padding .3s ease;"><img data-hdr-img="" src="uploads/Roof-Restoration-Gold-Coast-Logo.png" alt="Roof Restoration Services Gold Coast" style="width:clamp(132px,17vw,208px); height:auto; transition:width .3s ease;" /></a>
+  <div style="display:flex; align-items:center; gap:10px; flex:0 0 auto;">
+    <a href="tel:+61755519190" data-navlink="" style="display:none; font-size:12px; font-weight:600; letter-spacing:0.16em; min-height:44px; align-items:center;">(07) 5551 9190</a>
+    <button data-open-book="" type="button" data-accent-bg="" style="background:#0070C0; color:#EFEFEC; border:0; padding:0 18px; min-height:44px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Book an inspection</button>
+    <button data-open-menu="" type="button" aria-label="Open menu" style="background:transparent; border:1px solid rgba(138,143,148,0.4); min-height:44px; min-width:44px; padding:0 14px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Menu</button>
+  </div>
+</header>
+
+<div data-overlay="" style="position:fixed; inset:0; z-index:150; background:#0E1012; display:none; overflow-y:auto; padding:20px 6vw 60px;">
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding-bottom:32px; border-bottom:1px solid rgba(138,143,148,0.28);">
+    <div style="background:#EFEFEC; padding:8px 12px;"><img src="uploads/Roof-Restoration-Gold-Coast-Logo.png" alt="Roof Restoration Services Gold Coast" style="width:clamp(150px,20vw,220px); height:auto;" /></div>
+    <button data-close-menu="" type="button" style="background:transparent; border:1px solid rgba(138,143,148,0.4); min-height:44px; min-width:44px; padding:0 16px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Close</button>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:44px 32px; padding:44px 0;">
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Restore &amp; protect</div>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Restoration</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Heritage Roof Restoration</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Cleaning</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Painting</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Tile Roof Painting</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Metal Roof Painting</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Leaks &amp; repairs</div>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Repairs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Tile Roof Leak Repairs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Metal Roof Leak Repairs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Ridge Capping Repairs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Repointing</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Valley Replacement</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Flashing Installation</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Flashing Replacement</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">New roofs</div>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Replacement</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Re-Roofing</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">New Roof Installation</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">New Metal Roofs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">New Tile Roofs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Metal Roofing Installation</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Steel &amp; Tin Roofing</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Skylight Installation</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Water off the roof</div>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Gutter Repairs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Gutter Replacement</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Gutter Guard Installation</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Downpipe Replacement</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Fascia Cover Replacement</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Plumbing</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Pages</div>
+      <a href="#top" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Home</a>
+      <a href="#story" style="font-size:18px; min-height:44px; display:flex; align-items:center;">About</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Services</a>
+      <a href="#people" style="font-size:18px; min-height:44px; display:flex; align-items:center;">People</a>
+      <a href="#work" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Case studies</a>
+      <a href="#coverage" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Suburbs</a>
+      <a href="#contact" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Contact</a>
+    </div>
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:center; padding-top:32px; border-top:1px solid rgba(138,143,148,0.28);">
+    <a href="tel:+61755519190" style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(28px,4vw,44px); letter-spacing:-0.035em;">(07) 5551 9190</a>
+    <button data-open-book="" type="button" data-accent-bg="" style="background:#0070C0; color:#EFEFEC; border:0; padding:0 22px; min-height:48px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Book an inspection</button>
+  </div>
+</div>
+
+<section id="top" style="position:relative; height:100svh; overflow:hidden; display:flex; flex-direction:column; line-height:0; font-size:0;">
+  <div data-hero-img="" style="position:absolute; inset:0; background-color:#15181B; background-image:url('img/p1.jpg'); background-size:cover; background-position:center 62%; will-change:transform;"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(14,16,18,0.95) 0%, rgba(14,16,18,0.84) 30%, rgba(14,16,18,0.68) 60%, rgba(14,16,18,0.78) 100%);"></div>
+  <div style="position:relative; z-index:2; flex:1; min-height:0; line-height:1.5; font-size:18px; display:flex; flex-direction:column; justify-content:center; gap:clamp(14px,3.4vh,44px); padding:calc(clamp(60px,9vh,104px) + clamp(8px,2.4vh,34px)) 6vw clamp(14px,3vh,36px);">
+    <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Tile &amp; metal · Gold Coast, QLD 4222</div>
+    <h1 style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(38px,7.4vw,112px); letter-spacing:-0.045em; line-height:0.90; text-transform:uppercase;">
+      <span data-mask="" style="display:block; overflow:hidden;"><span data-maskline="" style="display:block;">Gold Coast roofs</span></span>
+      <span data-mask="" style="display:block; overflow:hidden;"><span data-maskline="" style="display:block;">cop a hiding.</span></span>
+      <span data-mask="" style="display:block; overflow:hidden;"><span data-maskline="" data-accent-fg="" style="display:block; color:#0070C0;">Is yours keeping up?</span></span>
+    </h1>
+    <div data-rv="" data-chiprow="" style="display:flex; flex-wrap:nowrap; gap:10px; overflow-x:auto; overflow-y:hidden; padding-bottom:2px;">
+      <span style="border:1px solid rgba(138,143,148,0.28); padding:0 16px; min-height:44px; flex:0 0 auto; white-space:nowrap; display:flex; align-items:center; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Leaks</span>
+      <span style="border:1px solid rgba(138,143,148,0.28); padding:0 16px; min-height:44px; flex:0 0 auto; white-space:nowrap; display:flex; align-items:center; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Rust</span>
+      <span style="border:1px solid rgba(138,143,148,0.28); padding:0 16px; min-height:44px; flex:0 0 auto; white-space:nowrap; display:flex; align-items:center; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Cracked tiles</span>
+      <span style="border:1px solid rgba(138,143,148,0.28); padding:0 16px; min-height:44px; flex:0 0 auto; white-space:nowrap; display:flex; align-items:center; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Overflowing gutters</span>
+      <span style="border:1px solid rgba(138,143,148,0.28); padding:0 16px; min-height:44px; flex:0 0 auto; white-space:nowrap; display:flex; align-items:center; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Storm damage</span>
+    </div>
+  </div>
+  <div style="position:relative; z-index:2; flex:0 0 auto; line-height:1.5; font-size:18px; display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:1px; background:rgba(138,143,148,0.28); border-top:1px solid rgba(138,143,148,0.28);">
+    <div style="background:rgba(14,16,18,0.78); padding:12px clamp(18px,2.6vw,34px); display:flex; align-items:center;">
+      <button data-open-book="" type="button" data-accent-bg="" data-magnetic="" style="background:#0070C0; color:#EFEFEC; border:0; padding:0 26px; min-height:52px; width:100%; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Book an inspection</button>
+    </div>
+    <a href="tel:+61755519190" style="background:rgba(14,16,18,0.78); padding:12px clamp(18px,2.6vw,34px); display:flex; flex-direction:column; justify-content:center; gap:4px; min-height:44px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Talk to the crew</span>
+      <span style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(26px,3vw,42px); letter-spacing:-0.035em; line-height:1;">(07) 5551 9190</span>
+    </a>
+    <div style="background:rgba(14,16,18,0.78); padding:12px clamp(18px,2.6vw,34px); display:flex; flex-direction:column; justify-content:center; gap:6px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Free on-site assessment</span>
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">No obligation, no pressure</span>
+    </div>
+  </div>
+</section>
+
+<section id="story" style="padding:clamp(80px,11vh,140px) 6vw; display:grid; grid-template-columns:repeat(12,1fr); gap:24px;">
+  <div style="grid-column:1 / -1; text-align:center; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94; margin-bottom:clamp(20px,3vh,36px);">Why roofs fail here</div>
+  <h2 data-rv="" style="grid-column:1 / -1; margin:0 auto clamp(36px,5vh,64px); text-align:center; font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); letter-spacing:-0.040em; line-height:0.95; text-transform:uppercase; max-width:24ch;">Salt air, storm rain and UV don't negotiate</h2>
+  <div data-rv="" style="grid-column:1 / -1; display:grid; grid-template-columns:repeat(auto-fit,minmax(272px,1fr)); gap:1px; background:rgba(138,143,148,0.28); border-block:1px solid rgba(138,143,148,0.28);">
+    <div style="background:#0E1012; padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,34px);">
+      <p style="margin:0; font-size:21px; line-height:1.45;">Leaks rarely come from the obvious spot. Most start around flashing, valleys, roof penetrations, cracked tiles, rusted sheets, or dodgy seal points.</p>
+    </div>
+    <div style="background:#0E1012; padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,34px);">
+      <p style="margin:0; font-size:18px; line-height:1.5;">Andrew Cowderoy leads the crew behind Roof Restoration Services Gold Coast, working tile and metal roofs from Southport and Robina to Burleigh Heads, Palm Beach, Coomera and Helensvale.</p>
+    </div>
+    <div style="background:#0E1012; padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,34px);">
+      <p style="margin:0; font-size:18px; line-height:1.5;">The brief on every job is the same. Do the prep properly, fix the cause rather than the symptom, and leave a finish that holds through storm season.</p>
+    </div>
+    <div style="background:#0E1012; padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,34px);">
+      <p style="margin:0; font-size:18px; line-height:1.5; color:#8A8F94;">The team is mobile across the Gold Coast. There is no shopfront, so inspections get booked around your week rather than ours.</p>
+    </div>
+  </div>
+  <div data-rv="" style="grid-column:1 / -1; margin-top:clamp(40px,6vh,80px); display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:rgba(138,143,148,0.28);">
+    <div data-stat="" data-to="77" style="background:#0E1012; padding:32px 26px; display:flex; flex-direction:column; gap:10px;">
+      <div style="font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1;"><span data-statnum="">77</span></div>
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Suburbs listed on the service map</div>
+    </div>
+    <div data-stat="" data-to="32" style="background:#0E1012; padding:32px 26px; display:flex; flex-direction:column; gap:10px;">
+      <div style="font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1;"><span data-statnum="">32</span></div>
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Individual roofing services offered</div>
+    </div>
+    <div data-stat="" data-to="20" style="background:#0E1012; padding:32px 26px; display:flex; flex-direction:column; gap:10px;">
+      <div style="font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1;"><span data-statnum="">20</span>+</div>
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Years of roofing experience</div>
+    </div>
+    <div style="background:#0E1012; padding:32px 26px; display:flex; flex-direction:column; gap:10px;">
+      <div style="font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1;">10 yr</div>
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Warranty on restoration work</div>
+    </div>
+  </div>
+</section>
+
+<section id="work" data-workgrid="" style="display:grid; grid-template-columns:1fr; gap:1px; background:rgba(138,143,148,0.28); border-block:1px solid rgba(138,143,148,0.28);">
+  <div data-rv="" data-parallax="" role="img" aria-label="Fresh pointing mortar laid along a tile roof ridge cap, trowel resting beside it" style="min-height:clamp(340px,52vh,560px); background-color:#15181B; background-image:url('img/p2.jpg'); background-size:cover; background-position:center;"></div>
+  <div data-rv="" style="background:#0E1012; padding:clamp(40px,7vh,90px) clamp(26px,4vw,64px); display:flex; flex-direction:column; justify-content:center; gap:26px;">
+    <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Recent work</div>
+    <h3 style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase; max-width:20ch;">The leak was in the valley, not the ceiling stain</h3>
+    <p style="margin:0; font-size:18px; line-height:1.5; max-width:56ch;">A homeowner had chased the same leak for months. The failure was the valley and flashing, not the visible wet patch. Repaired at the cause, dry through the storms since.</p>
+    <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Tile roof · Valley and flashing renewal · Leak traced at source</div>
+  </div>
+  <div data-rv="" style="background:#0E1012; padding:clamp(40px,7vh,90px) clamp(26px,4vw,64px); display:flex; flex-direction:column; justify-content:center; gap:26px;">
+    <h3 style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase; max-width:20ch;">Faded and patchy, then sharp from the street</h3>
+    <p style="margin:0; font-size:18px; line-height:1.5; max-width:56ch;">High-pressure clean, repairs, then a primer and protective coating chosen for UV stability. The owner's words: the finish looks premium and the place no longer reads older than it is.</p>
+    <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Tile roof · Clean, repair, repoint, coat · Adhesion-first system</div>
+  </div>
+  <div data-rv="" data-parallax="" role="img" aria-label="Close crop of a freshly coated charcoal tile roof, even matte finish along the ridge" style="min-height:clamp(340px,52vh,560px); background-color:#15181B; background-image:url('img/p3.jpg'); background-size:cover; background-position:center;"></div>
+</section>
+
+<section id="services" style="padding:clamp(80px,11vh,140px) 0 0; position:relative;">
+  <div style="padding:0 6vw; display:flex; flex-wrap:wrap; gap:14px 26px; align-items:baseline; justify-content:space-between; margin-bottom:clamp(24px,4vh,48px);">
+    <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">What the crew does</span>
+    <span data-railhint="" style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Scroll sideways →</span>
+  </div>
+  <h2 data-rv="" style="padding:0 6vw; margin:0 0 clamp(36px,5vh,64px); font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); letter-spacing:-0.040em; line-height:0.95; text-transform:uppercase; max-width:20ch;">Four ways a Gold Coast roof gets sorted</h2>
+  <div data-rail="" style="display:flex; gap:18px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; padding:0 6vw clamp(28px,4vh,44px);">
+    <a href="#contact" data-card="" style="flex:0 0 min(80vw,430px); scroll-snap-align:start; border:1px solid rgba(138,143,148,0.28); padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,32px); display:flex; flex-direction:column; gap:20px; transition:background .35s ease, border-color .35s ease;">
+      <span data-cardrule="" data-accent-bg="" style="height:2px; width:52px; background:#0070C0; display:block; transition:width .45s ease;"></span>
+      <span style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase;">Roof restoration, tile and metal</span>
+      <span style="font-size:18px; line-height:1.5; color:#8A8F94;">The right call when the structure is still sound. Clean it, repair it, repoint the ridge caps, renew the valleys, then coat it with a system built for Queensland weather.</span>
+      <span style="margin-top:auto; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Repointing · Ridge capping · Coating</span>
+    </a>
+    <a href="#contact" data-card="" style="flex:0 0 min(80vw,430px); scroll-snap-align:start; border:1px solid rgba(138,143,148,0.28); padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,32px); display:flex; flex-direction:column; gap:20px; transition:background .35s ease, border-color .35s ease;">
+      <span data-cardrule="" data-accent-bg="" style="height:2px; width:52px; background:#0070C0; display:block; transition:width .45s ease;"></span>
+      <span style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase;">Repairs that deal with the cause</span>
+      <span style="font-size:18px; line-height:1.5; color:#8A8F94;">Tile and metal leak repairs, flashing replacement, valley replacement and roof plumbing. Most leaks start at a join, not in the middle of a sheet.</span>
+      <span style="margin-top:auto; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Valleys · Flashing · Penetrations</span>
+    </a>
+    <a href="#contact" data-card="" style="flex:0 0 min(80vw,430px); scroll-snap-align:start; border:1px solid rgba(138,143,148,0.28); padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,32px); display:flex; flex-direction:column; gap:20px; transition:background .35s ease, border-color .35s ease;">
+      <span data-cardrule="" data-accent-bg="" style="height:2px; width:52px; background:#0070C0; display:block; transition:width .45s ease;"></span>
+      <span style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase;">Re-roofing and replacement</span>
+      <span style="font-size:18px; line-height:1.5; color:#8A8F94;">Widespread corrosion, repeat leaks, brittle tiles. New metal roofs, new tile roofs and full installs designed around local wind, rain load and drainage.</span>
+      <span style="margin-top:auto; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Tile · Metal · New builds</span>
+    </a>
+    <a href="#contact" data-card="" style="flex:0 0 min(80vw,430px); scroll-snap-align:start; border:1px solid rgba(138,143,148,0.28); padding:clamp(26px,4vh,40px) clamp(22px,2.4vw,32px); display:flex; flex-direction:column; gap:20px; transition:background .35s ease, border-color .35s ease;">
+      <span data-cardrule="" data-accent-bg="" style="height:2px; width:52px; background:#0070C0; display:block; transition:width .45s ease;"></span>
+      <span style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase;">Gutters, downpipes, fascia</span>
+      <span style="font-size:18px; line-height:1.5; color:#8A8F94;">A roof is only as good as its drainage. Repairs, replacement, and gutter guard for the leafy pockets around Mudgeeraba and Currumbin Valley.</span>
+      <span style="margin-top:auto; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#EFEFEC;">Stormwater · Gutter guard · Fascia</span>
+    </a>
+  </div>
+  <div data-rv="" role="img" aria-label="Corroded valley iron packed with leaf debris, before replacement" style="min-height:clamp(220px,34vh,360px); background-color:#15181B; background-image:url('img/p4.jpg'); background-size:cover; background-position:center; border-block:1px solid rgba(138,143,148,0.28);"></div>
+</section>
+
+<section id="process" data-light="" style="background:#EFEFEC; color:#0E1012; padding:clamp(80px,11vh,140px) 0 0; overflow:hidden;">
+  <div style="padding:0 6vw clamp(20px,3vh,36px); display:flex; flex-wrap:wrap; gap:14px 40px; align-items:flex-end; justify-content:space-between;">
+    <div style="display:flex; flex-direction:column; gap:clamp(16px,2.4vh,28px);">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">How the job runs</span>
+      <h2 data-rv="" style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); letter-spacing:-0.040em; line-height:0.95; text-transform:uppercase; max-width:16ch;">From first look to final rinse</h2>
+    </div>
+    <p data-rv="" style="margin:0; font-size:21px; line-height:1.45; max-width:52ch;">Six stages, same order every time. You know what happens next before anyone gets on the roof.</p>
+  </div>
+  <div data-rv="" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(214px,1fr)); gap:1px; background:rgba(78,84,89,0.3); border-block:1px solid rgba(78,84,89,0.3);">
+    <div style="background:#EFEFEC; padding:clamp(26px,4vh,40px) clamp(20px,2.2vw,30px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Inspect</span>
+      <span style="font-size:18px; line-height:1.5;">Tiles or sheets, fasteners, flashings, valleys, ridge capping and roof plumbing points all get checked.</span>
+    </div>
+    <div style="background:#EFEFEC; padding:clamp(26px,4vh,40px) clamp(20px,2.2vw,30px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Clean</span>
+      <span style="font-size:18px; line-height:1.5;">High-pressure wash strips grime, lichen and salt residue so repairs and coatings actually bond.</span>
+    </div>
+    <div style="background:#EFEFEC; padding:clamp(26px,4vh,40px) clamp(20px,2.2vw,30px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Repair</span>
+      <span style="font-size:18px; line-height:1.5;">Broken tiles replaced, ridge caps fixed, rusted sections treated, valleys renewed, leaks sorted at the source.</span>
+    </div>
+    <div style="background:#EFEFEC; padding:clamp(26px,4vh,40px) clamp(20px,2.2vw,30px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Repoint</span>
+      <span style="font-size:18px; line-height:1.5;">Bedding and pointing locked down where needed, which cuts movement and stops water getting in.</span>
+    </div>
+    <div style="background:#EFEFEC; padding:clamp(26px,4vh,40px) clamp(20px,2.2vw,30px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Coat</span>
+      <span style="font-size:18px; line-height:1.5;">Primer, then a coating system picked for hard UV and coastal exposure. Prep first, never a rushed topcoat.</span>
+    </div>
+    <div style="background:#EFEFEC; padding:clamp(26px,4vh,40px) clamp(20px,2.2vw,30px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Check</span>
+      <span style="font-size:18px; line-height:1.5;">Water flow, finish consistency and every vulnerable junction get a final look before the site is cleaned up.</span>
+    </div>
+  </div>
+  <div data-rv="" data-parallax="" role="img" aria-label="Two harnessed roofers relaying tiles on a pitched roof, shot from the gutter line" style="min-height:clamp(300px,48vh,520px); background-color:#DEDDD6; background-image:url('img/p5.jpg'); background-size:cover; background-position:center;"></div>
+</section>
+
+<section id="people" style="padding:clamp(80px,11vh,140px) 6vw; display:grid; grid-template-columns:repeat(12,1fr); gap:24px;">
+  <div style="grid-column:1 / -1; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94; margin-bottom:clamp(24px,4vh,48px);">Who turns up</div>
+  <div data-rv="" style="grid-column:1 / -1; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px; background:rgba(138,143,148,0.28);">
+    <div role="img" aria-label="Andrew Cowderoy on site in a work shirt and harness, hard hat under his arm" style="background:#15181B; background-image:url('img/p6.jpg'); background-size:cover; background-position:center 22%; min-height:clamp(320px,50vh,520px);"></div>
+    <div style="background:#0E1012; padding:clamp(32px,5vh,64px) clamp(26px,3vw,48px); display:flex; flex-direction:column; justify-content:center; gap:24px;">
+      <h3 style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00; text-transform:uppercase;">Andrew Cowderoy</h3>
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Owner · Andrew Cowderoy Roofing Pty Limited t/a BGT Roofing</div>
+      <p style="margin:0; font-size:18px; line-height:1.5; max-width:56ch;">A hands-on operator who treats roofing as performance work, not decoration. The roof has to be weatherproof and safe first. Looking sharp comes with it.</p>
+      <p style="margin:0; font-size:18px; line-height:1.5; max-width:56ch; color:#8A8F94;">Behind him, a crew of skilled roofers who take pride in the details that prevent repeat leaks.</p>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">
+        <span>QBCC licensed · Licence 1137438</span>
+        <span>ABN 87 108 233 576</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="voices" style="padding:0 6vw clamp(80px,11vh,140px);">
+  <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94; margin-bottom:clamp(24px,4vh,48px);">In their words</div>
+  <div data-rv="" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1px; background:rgba(138,143,148,0.28); border:1px solid rgba(138,143,148,0.28);">
+    <blockquote style="margin:0; background:#0E1012; padding:clamp(28px,4vh,48px) clamp(24px,2.6vw,40px); display:flex; flex-direction:column; gap:22px;">
+      <p style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:500; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00;">“We'd been chasing a leak for months. These guys actually found the cause — turns out it was the valley and flashing, not the obvious spot. Fixed it properly and it's been bone-dry through the last storms.”</p>
+      <footer style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Customer review · Gold Coast</footer>
+    </blockquote>
+    <blockquote style="margin:0; background:#0E1012; padding:clamp(28px,4vh,48px) clamp(24px,2.6vw,40px); display:flex; flex-direction:column; gap:22px;">
+      <p style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:500; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00;">“The roof was faded and patchy, and the place looked older than it is. After the clean and roof painting, it's sharper from the street and the finish looks premium.”</p>
+      <footer style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Customer review · Gold Coast</footer>
+    </blockquote>
+    <blockquote style="margin:0; background:#0E1012; padding:clamp(28px,4vh,48px) clamp(24px,2.6vw,40px); display:flex; flex-direction:column; gap:22px;">
+      <p style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:500; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; line-height:1.00;">“Clear quoting, showed up when they said they would, and the site was left tidy. The gutter replacement and downpipes made a massive difference in heavy rain.”</p>
+      <footer style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Customer review · Gold Coast</footer>
+    </blockquote>
+  </div>
+  <p data-rv="" style="margin:24px 0 0; font-size:18px; line-height:1.5; color:#8A8F94; max-width:56ch;">Roofing is one of those things you only notice when it fails, so it says a lot when someone bothers to talk about a job that didn't turn into drama.</p>
+</section>
+
+<div style="border-block:1px solid rgba(138,143,148,0.28); overflow:hidden; padding:18px 0;">
+  <div data-marquee="" style="display:flex; gap:0; width:max-content; font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(22px,3vw,42px); letter-spacing:-0.035em; text-transform:uppercase; line-height:1; color:#8A8F94; white-space:nowrap;">
+    <span style="padding:0 28px;">Roof restoration</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Leak detection</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Repointing</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Ridge capping</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Valleys &amp; flashing</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Roof painting</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Gutters &amp; downpipes</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+    <span style="padding:0 28px;">Re-roofing</span><span data-accent-fg="" style="color:#0070C0;">/</span>
+  </div>
+</div>
+
+<section id="coverage" style="padding:clamp(80px,11vh,140px) 6vw;">
+  <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94; margin-bottom:clamp(24px,4vh,48px);">Where the trucks go</div>
+  <h2 data-rv="" style="margin:0 0 clamp(28px,4vh,52px); font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); letter-spacing:-0.040em; line-height:0.95; text-transform:uppercase; max-width:18ch;">Coast to hinterland, 77 suburbs deep</h2>
+  <div data-rv="" style="display:flex; flex-wrap:wrap; gap:10px 0; font-size:18px; line-height:1.5; color:#8A8F94; max-width:100%;">
+    <span style="padding-right:18px;">Southport</span><span style="padding-right:18px;">Robina</span><span style="padding-right:18px;">Burleigh Heads</span><span style="padding-right:18px;">Burleigh Waters</span><span style="padding-right:18px;">Palm Beach</span><span style="padding-right:18px;">Coolangatta</span><span style="padding-right:18px;">Currumbin</span><span style="padding-right:18px;">Currumbin Valley</span><span style="padding-right:18px;">Elanora</span><span style="padding-right:18px;">Mermaid Beach</span><span style="padding-right:18px;">Mermaid Waters</span><span style="padding-right:18px;">Miami</span><span style="padding-right:18px;">Broadbeach</span><span style="padding-right:18px;">Surfers Paradise</span><span style="padding-right:18px;">Main Beach</span><span style="padding-right:18px;">Labrador</span><span style="padding-right:18px;">Biggera Waters</span><span style="padding-right:18px;">Hollywell</span><span style="padding-right:18px;">Hope Island</span><span style="padding-right:18px;">Helensvale</span><span style="padding-right:18px;">Coomera</span><span style="padding-right:18px;">Upper Coomera</span><span style="padding-right:18px;">Oxenford</span><span style="padding-right:18px;">Maudsland</span><span style="padding-right:18px;">Pimpama</span><span style="padding-right:18px;">Ormeau</span><span style="padding-right:18px;">Arundel</span><span style="padding-right:18px;">Ashmore</span><span style="padding-right:18px;">Benowa</span><span style="padding-right:18px;">Bundall</span><span style="padding-right:18px;">Carrara</span><span style="padding-right:18px;">Merrimac</span><span style="padding-right:18px;">Varsity Lakes</span><span style="padding-right:18px;">Reedy Creek</span><span style="padding-right:18px;">Mudgeeraba</span><span style="padding-right:18px;">Bonogin</span><span style="padding-right:18px;">Gilston</span><span style="padding-right:18px;">Highland Park</span><span style="padding-right:18px;">Nerang district</span><span style="padding-right:18px;">Tallebudgera</span><span style="padding-right:18px;">Tugun</span><span style="padding-right:18px;">Bilinga</span><span style="padding-right:18px;">Beechmont</span><span style="padding-right:18px;">Canungra</span><span style="padding-right:18px;">Springbrook</span><span style="padding-right:18px;">Tamborine Mountain</span><span data-accent-fg="" style="padding-right:18px; color:#0070C0;">+ 31 more</span>
+  </div>
+</section>
+
+<section id="contact" data-light="" style="background:#EFEFEC; color:#0E1012; padding:clamp(80px,11vh,140px) 0 0; overflow:hidden;">
+  <div style="padding:0 6vw; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vh,56px) clamp(32px,5vw,80px); align-items:end;">
+    <div style="display:flex; flex-direction:column; gap:clamp(18px,2.6vh,30px);">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">The next step</span>
+      <h2 data-rv="" style="margin:0; font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(32px,4.6vw,64px); letter-spacing:-0.040em; line-height:0.95; text-transform:uppercase; max-width:17ch;">Get your roof sorted before the next storm does</h2>
+    </div>
+    <p data-rv="" style="margin:0; font-size:21px; line-height:1.45; max-width:52ch;">Book a proper look and get clear options based on what your roof actually needs, whether that is a repair, a restoration or a re-roof. Waiting it out usually costs more.</p>
+  </div>
+  <div data-rv="" style="margin-top:clamp(40px,6vh,72px); display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:rgba(78,84,89,0.3); border-block:1px solid rgba(78,84,89,0.3);">
+    <div style="background:#EFEFEC; padding:clamp(28px,4vh,44px) clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:18px; justify-content:space-between;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Book it online</span>
+      <button data-open-book="" type="button" data-accent-bg="" data-magnetic="" style="background:#0070C0; color:#EFEFEC; border:0; padding:0 26px; min-height:52px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Book an inspection</button>
+    </div>
+    <a href="tel:+61755519190" style="background:#EFEFEC; padding:clamp(28px,4vh,44px) clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:14px; color:#0E1012;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">Or ring the crew</span>
+      <span style="font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:clamp(26px,3vw,42px); letter-spacing:-0.035em; line-height:1;">(07) 5551 9190</span>
+    </a>
+    <div style="background:#EFEFEC; padding:clamp(28px,4vh,44px) clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">On the tools</span>
+      <span style="font-size:18px; line-height:1.5;">Monday to Friday 7am – 5pm<br />Saturday 8am – 12pm</span>
+    </div>
+    <div style="background:#EFEFEC; padding:clamp(28px,4vh,44px) clamp(22px,2.4vw,34px); display:flex; flex-direction:column; gap:14px;">
+      <span style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#4E5459;">No risk</span>
+      <span style="font-size:18px; line-height:1.5;">Free on-site assessment. No obligation, and no pressure to book work on the day.</span>
+    </div>
+  </div>
+  <div data-rv="" data-parallax="" role="img" aria-label="Storm front building over a street of tiled Gold Coast rooftops" style="min-height:clamp(280px,44vh,480px); background-color:#DEDDD6; background-image:url('img/p7.jpg'); background-size:cover; background-position:center;"></div>
+</section>
+
+<footer style="padding:clamp(56px,8vh,96px) 6vw clamp(32px,4vh,48px); border-top:1px solid rgba(138,143,148,0.28); display:flex; flex-direction:column; gap:clamp(40px,6vh,72px);">
+  <div style="background:#EFEFEC; padding:12px 16px; align-self:flex-start;"><img src="uploads/Roof-Restoration-Gold-Coast-Logo.png" alt="Roof Restoration Services Gold Coast" style="width:clamp(190px,24vw,300px); height:auto;" /></div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:40px 32px;">
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Pages</div>
+      <a href="#top" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Home</a>
+      <a href="#story" style="font-size:18px; min-height:44px; display:flex; align-items:center;">About</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Services</a>
+      <a href="#people" style="font-size:18px; min-height:44px; display:flex; align-items:center;">People</a>
+      <a href="#work" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Case studies</a>
+      <a href="#coverage" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Suburbs</a>
+      <a href="#contact" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Contact</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Roofing work</div>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Restoration</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Repairs</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Replacement</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Re-Roofing</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Painting</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Roof Cleaning</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Gutters &amp; Downpipes</a>
+      <a href="#services" style="font-size:18px; min-height:44px; display:flex; align-items:center;">Heritage Roof Restoration</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Contact</div>
+      <a href="tel:+61755519190" style="font-size:18px; min-height:44px; display:flex; align-items:center;">(07) 5551 9190</a>
+      <a href="mailto:sales@roofrestorationgoldcoast.com.au" style="font-size:18px; overflow-wrap:anywhere; min-height:44px; display:flex; align-items:center;">sales@roofrestorationgoldcoast.com.au</a>
+      <div style="font-size:18px; line-height:1.5; color:#8A8F94;">Gold Coast, Queensland 4222</div>
+      <div style="font-size:18px; line-height:1.5; color:#8A8F94;">Monday to Friday 7am – 5pm<br />Saturday 8am – 12pm</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Trading details</div>
+      <div style="font-size:18px; line-height:1.5;">Andrew Cowderoy Roofing Pty Limited<br /><span style="color:#8A8F94;">trading as</span> BGT Roofing</div>
+      <div style="font-size:18px; line-height:1.5;">ABN 87 108 233 576</div>
+      <div style="font-size:18px; line-height:1.5;">QBCC licence 1137438</div>
+    </div>
+  </div>
+  <div style="display:flex; justify-content:center; text-align:center; padding-top:26px; border-top:1px solid rgba(138,143,148,0.28); font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">
+    <span>©2026 Roof Restoration Services Gold Coast</span>
+  </div>
+</footer>
+
+<div data-book="" role="dialog" aria-modal="true" aria-label="Book an inspection" style="position:fixed; inset:0; z-index:180; display:none; background:rgba(14,16,18,0.92); backdrop-filter:blur(6px); overflow-y:auto; padding:0;">
+  <div style="min-height:100%; display:flex; align-items:stretch; justify-content:center; padding:clamp(12px,3vh,40px) 4vw;">
+    <div style="width:min(860px,100%); background:#0E1012; border:1px solid rgba(138,143,148,0.28); display:flex; flex-direction:column;">
+      <div data-book-chrome="" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; border-bottom:1px solid rgba(138,143,148,0.28);">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8A8F94;">Prototype · <span data-step-label="">Step 1 of 4</span></div>
+        <button data-close-book="" type="button" style="background:transparent; border:1px solid rgba(138,143,148,0.4); min-height:44px; min-width:44px; padding:0 16px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Close</button>
+      </div>
+      <div data-book-bar="" style="height:2px; background:rgba(138,143,148,0.28);"><div data-book-fill="" data-accent-bg="" style="height:2px; width:25%; background:#0070C0; transition:width .4s ease;"></div></div>
+      <div data-book-body="" style="padding:clamp(28px,5vh,56px) clamp(24px,4vw,56px); display:flex; flex-direction:column; gap:28px; flex:1;"></div>
+      <div data-book-foot="" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; border-top:1px solid rgba(138,143,148,0.28);">
+        <button data-book-back="" type="button" style="background:transparent; border:1px solid rgba(138,143,148,0.4); min-height:48px; padding:0 22px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Back</button>
+        <button data-book-next="" type="button" data-accent-bg="" style="background:#0070C0; color:#EFEFEC; border:0; min-height:48px; padding:0 26px; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer;">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0070C0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0070C0&quot;,&quot;#0058B0&quot;,&quot;#C2410C&quot;,&quot;#4E5459&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;full&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;off&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const GREY = '#8A8F94';
+const HAIR = 'rgba(138,143,148,0.28)';
+const INK = '#0E1012';
+const PAPER = '#EFEFEC';
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this.accent = this.props.accent || '#0070C0';
+    this.motionOn = (this.props.motion !== 'off') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.root = document.querySelector('x-dc') || document.body;
+    this.step = 0;
+    this.answers = { problem: '', roof: '', suburb: '', urgency: '', name: '', phone: '', email: '' };
+    this.applyAccent();
+    this.wireResponsive();
+    this.wireMenu();
+    this.wireBooking();
+    this.runLoader();
+  }
+
+  q(sel) { return Array.from(this.root.querySelectorAll(sel)); }
+
+  applyAccent() {
+    const a = this.accent;
+    this.q('[data-accent-fg]').forEach(function (el) { el.style.color = a; });
+    this.q('[data-accent-bg]').forEach(function (el) { el.style.background = a; });
+  }
+
+  wireResponsive() {
+    const phone = this.root.querySelector('header [href^="tel:"]');
+    const work = this.root.querySelector('[data-workgrid]');
+    const apply = function () {
+      const w = window.innerWidth;
+      if (phone) phone.style.display = w >= 720 ? 'flex' : 'none';
+      if (work) {
+        work.style.gridTemplateColumns = w >= 1240 ? 'repeat(4,1fr)' : (w >= 640 ? 'repeat(2,1fr)' : '1fr');
+      }
+    };
+    apply();
+    window.addEventListener('resize', apply);
+  }
+
+  wireMenu() {
+    const ov = this.root.querySelector('[data-overlay]');
+    const self = this;
+    const open = function () { ov.style.display = 'block'; self.lockScroll(true); };
+    const close = function () { ov.style.display = 'none'; self.lockScroll(false); };
+    this.q('[data-open-menu]').forEach(function (b) { b.addEventListener('click', open); });
+    this.q('[data-close-menu]').forEach(function (b) { b.addEventListener('click', close); });
+    ov.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+    this.closeMenu = close;
+  }
+
+  lockScroll(on) {
+    document.body.style.overflow = on ? 'hidden' : '';
+    if (this.lenis) { on ? this.lenis.stop() : this.lenis.start(); }
+  }
+
+  runLoader() {
+    const curtain = this.root.querySelector('[data-curtain]');
+    const counter = this.root.querySelector('[data-counter]');
+    const self = this;
+    if (!this.motionOn || !window.gsap) {
+      if (curtain) curtain.remove();
+      this.initMotion();
+      return;
+    }
+    const obj = { v: 0 };
+    window.gsap.to(obj, {
+      v: 100, duration: 1.1, ease: 'power2.inOut',
+      onUpdate: function () { counter.textContent = String(Math.round(obj.v)).padStart(2, '0'); },
+      onComplete: function () {
+        window.gsap.to(curtain, {
+          yPercent: -100, duration: 0.8, ease: 'power3.inOut',
+          onComplete: function () { curtain.remove(); }
+        });
+        self.initMotion();
+      }
+    });
+  }
+
+  initMotion() {
+    const gsap = window.gsap;
+    const root = this.root;
+    const self = this;
+    this.wireMagnetic();
+    this.wireHoverList();
+    if (!gsap || !this.motionOn) { this.wireHeaderPlain(); return; }
+    gsap.registerPlugin(window.ScrollTrigger);
+
+    if (window.Lenis) {
+      this.lenis = new window.Lenis({ duration: 1.05, smoothWheel: true });
+      const raf = function (t) { self.lenis.raf(t); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+      this.lenis.on('scroll', window.ScrollTrigger.update);
+    }
+
+    const lines = root.querySelectorAll('[data-maskline]');
+    gsap.from(lines, { yPercent: 110, duration: 0.95, ease: 'power3.out', stagger: 0.08, delay: 0.1 });
+    const heroImg = root.querySelector('[data-hero-img]');
+    if (heroImg) gsap.fromTo(heroImg, { scale: 1.12 }, { scale: 1, duration: 2.4, ease: 'power2.out' });
+
+    root.querySelectorAll('[data-rv]').forEach(function (el) {
+      gsap.fromTo(el, { opacity: 0, y: 24 }, {
+        opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+      });
+    });
+
+    root.querySelectorAll('[data-parallax]').forEach(function (el) {
+      gsap.fromTo(el, { yPercent: -4 }, {
+        yPercent: 4, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+
+    root.querySelectorAll('[data-stat]').forEach(function (el) {
+      const target = parseInt(el.getAttribute('data-to'), 10);
+      const out = el.querySelector('[data-statnum]');
+      const o = { v: 0 };
+      gsap.to(o, {
+        v: target, duration: 1.4, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        onUpdate: function () { out.textContent = Math.round(o.v); }
+      });
+    });
+
+    const mq = root.querySelector('[data-marquee]');
+    if (mq) {
+      mq.innerHTML = mq.innerHTML + mq.innerHTML;
+      gsap.to(mq, { xPercent: -50, duration: 34, ease: 'none', repeat: -1 });
+    }
+
+    this.wireHeaderScroll();
+    window.ScrollTrigger.refresh();
+  }
+
+  wireHeaderPlain() {
+    const hd = this.root.querySelector('[data-header]');
+    const lights = Array.from(this.root.querySelectorAll('[data-light]'));
+    const self = this;
+    const onScroll = function () {
+      const over = lights.some(function (el) {
+        const r = el.getBoundingClientRect();
+        return r.top <= 70 && r.bottom >= 70;
+      });
+      self.setHeaderTone(over, window.scrollY > 80);
+    };
+    this.syncHeader = onScroll;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scrollend', onScroll);
+    window.addEventListener('hashchange', onScroll);
+    window.addEventListener('resize', onScroll);
+    // A programmatic or anchor jump fires scroll once against an uncommitted
+    // position, so re-read the geometry on the next few frames as well.
+    const rafSync = function () { requestAnimationFrame(onScroll); requestAnimationFrame(function () { requestAnimationFrame(onScroll); }); };
+    window.addEventListener('scroll', rafSync, { passive: true });
+    setInterval(onScroll, 250);
+    onScroll();
+    this.hd = hd;
+  }
+
+  wireHeaderScroll() {
+    this.wireHeaderPlain();
+    const self = this;
+    if (this.lenis) this.lenis.on('scroll', function () { self.syncHeader(); });
+    if (window.ScrollTrigger) {
+      this.root.querySelectorAll('[data-light]').forEach(function (el) {
+        window.ScrollTrigger.create({
+          trigger: el, start: 'top 70px', end: 'bottom 70px',
+          onEnter: self.syncHeader, onLeave: self.syncHeader,
+          onEnterBack: self.syncHeader, onLeaveBack: self.syncHeader,
+          onRefresh: self.syncHeader
+        });
+      });
+    }
+  }
+
+  setHeaderTone(overLight, shrunk) {
+    const hd = this.root.querySelector('[data-header]');
+    if (!hd) return;
+    const fg = overLight ? INK : PAPER;
+    if (hd.dataset.tone === (overLight ? 'light' : 'dark') && hd.dataset.shrunk === String(!!shrunk)) return;
+    hd.dataset.tone = overLight ? 'light' : 'dark';
+    hd.dataset.shrunk = String(!!shrunk);
+    hd.style.background = overLight ? 'rgba(239,239,236,0.90)' : 'rgba(14,16,18,0.86)';
+    hd.style.borderBottomColor = overLight ? 'rgba(78,84,89,0.30)' : HAIR;
+    hd.style.padding = shrunk ? '8px 6vw' : '14px 6vw';
+    const img = hd.querySelector('[data-hdr-img]');
+    if (img) img.style.width = shrunk ? 'clamp(112px,13vw,164px)' : 'clamp(132px,17vw,208px)';
+    hd.querySelectorAll('[data-navlink]').forEach(function (a) { a.style.transition = 'color .3s ease'; a.style.color = fg; });
+    const menuBtn = hd.querySelector('[data-open-menu]');
+    if (menuBtn) {
+      menuBtn.style.transition = 'color .3s ease, border-color .3s ease';
+      menuBtn.style.color = fg;
+      menuBtn.style.borderColor = overLight ? 'rgba(78,84,89,0.4)' : 'rgba(138,143,148,0.4)';
+    }
+  }
+
+  wireMagnetic() {
+    if (!this.motionOn || !window.gsap) return;
+    this.q('[data-magnetic]').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        const r = btn.getBoundingClientRect();
+        window.gsap.to(btn, { x: (e.clientX - r.left - r.width / 2) * 0.25, y: (e.clientY - r.top - r.height / 2) * 0.3, duration: 0.4 });
+      });
+      btn.addEventListener('mouseleave', function () { window.gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.5)' }); });
+    });
+  }
+
+  wireHoverList() {
+    const rail = this.root.querySelector('[data-rail]');
+    if (!rail) return;
+    const cards = Array.from(rail.querySelectorAll('[data-card]'));
+    const on = function (card) {
+      card.style.background = '#15181B';
+      card.style.borderColor = 'rgba(138,143,148,0.55)';
+      const rule = card.querySelector('[data-cardrule]');
+      if (rule) rule.style.width = '100%';
+    };
+    const off = function (card) {
+      card.style.background = 'transparent';
+      card.style.borderColor = HAIR;
+      const rule = card.querySelector('[data-cardrule]');
+      if (rule) rule.style.width = '52px';
+    };
+    cards.forEach(function (card) {
+      card.addEventListener('mouseenter', function () { on(card); });
+      card.addEventListener('mouseleave', function () { off(card); });
+      card.addEventListener('focus', function () { on(card); });
+      card.addEventListener('blur', function () { off(card); });
+    });
+    const hint = this.root.querySelector('[data-railhint]');
+    if (hint) {
+      const sync = function () {
+        hint.style.opacity = rail.scrollWidth - rail.clientWidth > 8 ? '1' : '0';
+      };
+      sync();
+      window.addEventListener('resize', sync);
+      rail.addEventListener('scroll', sync);
+    }
+  }
+
+  /* ---------- booking wizard ---------- */
+
+  wireBooking() {
+    const self = this;
+    this.modal = this.root.querySelector('[data-book]');
+    this.body = this.root.querySelector('[data-book-body]');
+    this.fill = this.root.querySelector('[data-book-fill]');
+    this.stepLabel = this.root.querySelector('[data-step-label]');
+    this.chrome = this.root.querySelector('[data-book-chrome]');
+    this.foot = this.root.querySelector('[data-book-foot]');
+    this.bar = this.root.querySelector('[data-book-bar]');
+    this.btnBack = this.root.querySelector('[data-book-back]');
+    this.btnNext = this.root.querySelector('[data-book-next]');
+
+    this.q('[data-open-book]').forEach(function (b) {
+      b.addEventListener('click', function () { self.openBook(); });
+    });
+    this.q('[data-close-book]').forEach(function (b) {
+      b.addEventListener('click', function () { self.closeBook(); });
+    });
+    this.btnBack.addEventListener('click', function () { self.go(self.step - 1); });
+    this.btnNext.addEventListener('click', function () {
+      if (self.step === 3) { self.finish(); } else { self.go(self.step + 1); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (self.modal.style.display === 'block') self.closeBook();
+        else self.closeMenu();
+      }
+    });
+  }
+
+  openBook() {
+    if (this.closeMenu) this.closeMenu();
+    this.modal.style.display = 'block';
+    this.lockScroll(true);
+    this.go(0);
+    const self = this;
+    setTimeout(function () { const f = self.body.querySelector('button,input'); if (f) f.focus(); }, 60);
+  }
+
+  closeBook() {
+    this.modal.style.display = 'none';
+    this.lockScroll(false);
+  }
+
+  go(n) {
+    this.step = Math.max(0, Math.min(3, n));
+    this.chrome.style.display = 'flex';
+    this.foot.style.display = 'flex';
+    this.bar.style.display = 'block';
+    this.fill.style.width = ((this.step + 1) * 25) + '%';
+    this.stepLabel.textContent = 'Step ' + (this.step + 1) + ' of 4';
+    this.btnBack.style.visibility = this.step === 0 ? 'hidden' : 'visible';
+    this.btnNext.textContent = this.step === 3 ? 'Send it through' : 'Continue';
+    this.render();
+  }
+
+  h(tag, style, text) {
+    const el = document.createElement(tag);
+    if (style) el.setAttribute('style', style);
+    if (text != null) el.textContent = text;
+    return el;
+  }
+
+  kicker(t) { return this.h('div', 'font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:' + GREY + ';', t); }
+  question(t) { return this.h('h3', "margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:clamp(22px,3vw,42px);letter-spacing:-0.035em;line-height:1.00;text-transform:uppercase;max-width:20ch;", t); }
+
+  choices(key, opts, wideLast) {
+    const wrap = this.h('div', 'display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:' + HAIR + ';border:1px solid ' + HAIR + ';');
+    const self = this;
+    opts.forEach(function (o, i) {
+      const wide = wideLast && i === opts.length - 1;
+      const b = self.h('button', 'text-align:left;background:' + (self.answers[key] === o ? self.accent : INK) + ';border:0;color:' + PAPER + ';padding:20px 18px;min-height:64px;font-size:18px;line-height:1.5;cursor:pointer;' + (wide ? 'grid-column:1/-1;' : ''), o);
+      b.type = 'button';
+      b.addEventListener('click', function () { self.answers[key] = o; self.render(); });
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+
+  field(key, labelText, placeholder, type) {
+    const wrap = this.h('label', 'display:flex;flex-direction:column;gap:10px;');
+    wrap.appendChild(this.kicker(labelText));
+    const inp = document.createElement('input');
+    inp.type = type || 'text';
+    inp.value = this.answers[key];
+    inp.placeholder = placeholder;
+    inp.setAttribute('style', 'background:transparent;border:0;border-bottom:1px solid ' + HAIR + ';color:' + PAPER + ';font-family:Archivo,sans-serif;font-size:19px;line-height:1.5;padding:12px 0;min-height:48px;outline:none;');
+    const self = this;
+    inp.addEventListener('input', function () { self.answers[key] = inp.value; });
+    inp.addEventListener('focus', function () { inp.style.borderBottomColor = self.accent; });
+    inp.addEventListener('blur', function () { inp.style.borderBottomColor = HAIR; });
+    wrap.appendChild(inp);
+    return wrap;
+  }
+
+  render() {
+    const b = this.body;
+    b.innerHTML = '';
+    const s = this.step;
+    if (s === 0) {
+      b.appendChild(this.kicker('01 · The roof'));
+      b.appendChild(this.question("What's your roof doing?"));
+      b.appendChild(this.choices('problem', ['It’s leaking', 'Rust or faded colour', 'Cracked or shifting tiles', 'Gutters overflowing', 'Storm damage', 'Just want it looked at']));
+    } else if (s === 1) {
+      b.appendChild(this.kicker('02 · The property'));
+      b.appendChild(this.question('Tile or metal, and whereabouts?'));
+      b.appendChild(this.choices('roof', ['Tile', 'Metal', 'Not sure']));
+      b.appendChild(this.field('suburb', 'Suburb', 'Burleigh Heads'));
+    } else if (s === 2) {
+      b.appendChild(this.kicker('03 · The timing'));
+      b.appendChild(this.question('How soon do you need someone up there?'));
+      b.appendChild(this.choices('urgency', ['Water is coming in now', 'This week', 'Next few weeks', 'Planning ahead, comparing quotes'], true));
+      const grid = this.h('div', 'display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;');
+      grid.appendChild(this.field('name', 'Your name', 'Sam Whitby'));
+      grid.appendChild(this.field('phone', 'Phone', '0400 000 000', 'tel'));
+      b.appendChild(grid);
+      b.appendChild(this.field('email', 'Email', 'sam@example.com.au', 'email'));
+    } else {
+      b.appendChild(this.kicker('04 · Review'));
+      b.appendChild(this.question('Have a look before it goes'));
+      const rows = [
+        ['Roof issue', this.answers.problem],
+        ['Roof type', this.answers.roof],
+        ['Suburb', this.answers.suburb],
+        ['Timing', this.answers.urgency],
+        ['Name', this.answers.name],
+        ['Phone', this.answers.phone],
+        ['Email', this.answers.email]
+      ];
+      const list = this.h('div', 'display:flex;flex-direction:column;gap:1px;background:' + HAIR + ';border:1px solid ' + HAIR + ';');
+      const self = this;
+      rows.forEach(function (r) {
+        const row = self.h('div', 'background:' + INK + ';padding:16px 18px;display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:18px;align-items:baseline;');
+        row.appendChild(self.kicker(r[0]));
+        row.appendChild(self.h('div', 'font-size:18px;line-height:1.5;color:' + (r[1] ? PAPER : GREY) + ';', r[1] || 'Not answered'));
+        list.appendChild(row);
+      });
+      b.appendChild(list);
+      b.appendChild(this.h('p', 'margin:0;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:' + GREY + ';', 'Prototype — nothing is submitted anywhere'));
+    }
+  }
+
+  finish() {
+    this.chrome.style.display = 'none';
+    this.foot.style.display = 'none';
+    this.bar.style.display = 'none';
+    const b = this.body;
+    b.innerHTML = '';
+    b.style.minHeight = '60vh';
+    b.style.justifyContent = 'center';
+    const name = this.answers.name ? this.answers.name.split(' ')[0] : 'there';
+    const sub = this.answers.suburb || 'the Gold Coast';
+    b.appendChild(this.h('div', 'font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:' + this.accent + ';', 'Booked in'));
+    b.appendChild(this.h('h3', "margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:clamp(32px,4.6vw,64px);letter-spacing:-0.040em;line-height:0.95;text-transform:uppercase;max-width:17ch;", 'Thanks ' + name + ' — we’ll call to lock in a time'));
+    b.appendChild(this.h('p', 'margin:0;font-size:21px;line-height:1.45;max-width:52ch;', 'Someone from the crew will ring you about the roof in ' + sub + ', usually the same working day. Mon–Fri 7am–5pm, Sat 8am–12pm.'));
+    b.appendChild(this.h('p', 'margin:0;font-size:18px;line-height:1.5;max-width:56ch;color:' + GREY + ';', 'In a hurry? Call (07) 5551 9190 and mention the roof issue you picked.'));
+    const close = this.h('button', 'align-self:flex-start;background:' + this.accent + ';color:' + PAPER + ';border:0;min-height:52px;padding:0 26px;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;', 'Close');
+    close.type = 'button';
+    const self = this;
+    close.addEventListener('click', function () {
+      self.closeBook();
+      b.style.minHeight = '';
+      b.style.justifyContent = '';
+    });
+    b.appendChild(close);
+    b.appendChild(this.h('div', 'font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:' + GREY + ';', 'Prototype — no data was submitted'));
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
